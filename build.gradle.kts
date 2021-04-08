@@ -34,6 +34,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
 	implementation("io.lettuce:lettuce-core:6.0.0.RELEASE")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("io.jsonwebtoken:jjwt:0.9.1")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")

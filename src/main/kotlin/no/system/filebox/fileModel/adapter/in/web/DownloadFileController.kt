@@ -23,4 +23,7 @@ class DownloadFileController(private val downloadFileUseCase: DownloadFileUseCas
             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + file?.fileName + "\"")
             .body(ByteArrayResource(file.filedata))
     }
+
+    @GetMapping
+    fun home() : String = "file is forbidden"
 }
