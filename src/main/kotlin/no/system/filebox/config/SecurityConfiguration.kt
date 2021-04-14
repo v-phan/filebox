@@ -14,8 +14,8 @@ class SecurityConfiguration: WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity) {
         http
             .csrf()
-//            .disable()
-            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) //uncomment for enable supply av csrf token
+            .disable()
+//            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) //uncomment for enable supply av csrf token
 //        http
 //            .authorizeRequests()
 //            .anyRequest()
