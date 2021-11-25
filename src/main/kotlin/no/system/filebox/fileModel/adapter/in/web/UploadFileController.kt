@@ -17,7 +17,7 @@ class UploadFileController(private val uploadFileUseCase: UploadFileUseCase) {
     @CrossOrigin(origins = ["http://localhost:3000"])
     fun uploadFile(@RequestParam("file") file: MultipartFile,
                    @RequestHeader("userID") userID: Int,
-                   @RequestHeader("hash") hash: String): ResponseEntity<Any>{
+                   @RequestHeader("password") password: String): ResponseEntity<Any>{
         val model = uploadFileUseCase.uploadFile(file, userID)
         val downloadUrl =  ServletUriComponentsBuilder.fromCurrentContextPath().path("file/download/").path(model.fileID.toString()).toUriString()
         return ResponseEntity

@@ -16,8 +16,8 @@ class DownloadFileController(private val downloadFileUseCase: DownloadFileUseCas
 
     @GetMapping("/download/{fileID}")
     @CrossOrigin(origins = ["http://localhost:3000"])
-    fun downloadFile(@PathVariable fileID : Int, @RequestHeader ("hash") hash: String)  : ResponseEntity<Any> {
-        val file = downloadFileUseCase.downloadFile(hash, fileID)!!
+    fun downloadFile(@PathVariable fileID : Int, @RequestHeader ("password") password: String)  : ResponseEntity<Any> {
+        val file = downloadFileUseCase.downloadFile(password, fileID)!!
         return ResponseEntity
             .status(HttpStatus.OK)
             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + file?.fileName + "\"")

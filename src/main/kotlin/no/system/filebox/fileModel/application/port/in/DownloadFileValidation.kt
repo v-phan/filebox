@@ -4,5 +4,5 @@ import no.system.filebox.fileModel.domain.FileModel
 
 interface DownloadFileValidation {
     fun doesFileExist(fileID: Int)
-    fun userIsOwner(hash: String, userID: Int)
+    fun userIsOwner(password: String, userID: Int)
 }

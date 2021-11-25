@@ -10,9 +10,9 @@ class GetFileListForUserController(val getFileListForUserUseCase: GetFileListFor
 
     @GetMapping("/user/{userID}")
     @CrossOrigin(origins = ["http://localhost:3000"])
-    fun getUsersFiles(@PathVariable userID: Int, @RequestHeader ("hash") hash: String): ResponseEntity<Any>{
+    fun getUsersFiles(@PathVariable userID: Int, @RequestHeader ("password") password: String): ResponseEntity<Any>{
         return ResponseEntity
             .status(200)
-            .body(getFileListForUserUseCase.getFiles(hash, userID))
+            .body(getFileListForUserUseCase.getFiles(password, userID))
     }
 }

@@ -16,12 +16,12 @@ class GetFileListForUserService(private val getFileListForUserPort: GetFileListF
 
     private val hashOperations: HashOperations<String, String, String> = redisTemplate.opsForHash()
 
-    override fun getFiles(hash: String, userID: Int): List<FileModel> {
-        userIsOwner(hash, userID)
+    override fun getFiles(password: String, userID: Int): List<FileModel> {
+        userIsOwner(password, userID)
         return getFileListForUserPort.getFileListForUser(userID)
     }
 
-    override fun userIsOwner(hash: String, userID: Int) {
-        if(hashOperations.get("session:$hash","userID")?.toInt()!=userID) throw ResponseStatusException(HttpStatus.FORBIDDEN, "Hash samsvarer ikke med brukerID")
+    override fun userIsOwner(password: String, userID: Int) {
+        if(hashOperations.get("$password","userID")?.toInt()!=userID) throw ResponseStatusException(HttpStatus.FORBIDDEN, "Passord samsvarer ikke med brukerID")
     }
 }

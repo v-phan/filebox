@@ -15,10 +15,10 @@ import org.springframework.web.server.ResponseStatusException
 class DownloadFileService(private val downloadFilePort: DownloadFilePort, @Qualifier("redisTemplateUser") private val redisTemplate: RedisTemplate<String, String>) : DownloadFileUseCase, DownloadFileValidation {
     private val hashOperations: HashOperations<String, String, String> = redisTemplate.opsForHash<String, String>()
 
-    override fun downloadFile(hash: String, fileID: Int): FileModel? {
+    override fun downloadFile(password: String, fileID: Int): FileModel? {
         val file = downloadFilePort.downloadFile(fileID)
         doesFileExist(fileID)
-        userIsOwner(hash,file!!.userID)
+        userIsOwner(password,file!!.userID)
         return file
     }
 
@@ -26,8 +26,8 @@ class DownloadFileService(private val downloadFilePort: DownloadFilePort, @Quali
         downloadFilePort.downloadFile(fileID)?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Fil med filID  finnes ikke")
     }
 
-    override fun userIsOwner(hash: String, userID: Int){
-        if(userID != hashOperations.get("session:$hash","userID")?.toInt()){
+    override fun userIsOwner(password: String, userID: Int){
+        if(userID != hashOperations.get("$password","userID")?.toInt()){
             throw ResponseStatusException(HttpStatus.FORBIDDEN, "Filen tilhører en annen bruker")
         }
     }
