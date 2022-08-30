@@ -1,14 +1,14 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.jetbrains.kotlin.plugin.jpa") version "1.3.72"
-	id("org.jetbrains.kotlin.plugin.noarg") version "1.3.72"
+	id("org.jetbrains.kotlin.plugin.jpa") version "1.5.21"
+	id("org.jetbrains.kotlin.plugin.noarg") version "1.5.21"
 	kotlin("plugin.allopen") version "1.3.72"
-	id("org.springframework.boot") version "2.4.3"
+	id("org.springframework.boot") version "2.7.3"
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
-	kotlin("jvm") version "1.4.30"
-	kotlin("plugin.spring") version "1.4.30"
-	kotlin("kapt") version "1.4.30"
+	kotlin("jvm") version "1.7.10"
+	kotlin("plugin.spring") version "1.7.10"
+	kotlin("kapt") version "1.7.10"
 	application
 }
 
@@ -24,15 +24,16 @@ allOpen {
 
 group = "no.system"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_11
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
+	implementation("org.jetbrains.kotlin:kotlin-noarg:1.7.10")
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
-	implementation("io.lettuce:lettuce-core:6.0.0.RELEASE")
+	implementation("io.lettuce:lettuce-core:6.2.0.RELEASE")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.springframework.boot:spring-boot-starter-web")

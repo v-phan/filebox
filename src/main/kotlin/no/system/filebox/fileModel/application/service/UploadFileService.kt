@@ -25,6 +25,6 @@ class UploadFileService(private val uploadFilePort: UploadFilePort, @Qualifier("
     }
 
     override fun userIsOwner(password: String, userID: Int) {
-        if(hashOperations.get("session:$password","userID")?.toInt()!=userID) throw ResponseStatusException(HttpStatus.FORBIDDEN, "Password samsvarer ikke med brukerID. $password + $userID")
+        if(hashOperations.get("$password","userID")?.toInt()!=userID) throw ResponseStatusException(HttpStatus.FORBIDDEN, "Password samsvarer ikke med brukerID. $password + $userID")
     }
 }

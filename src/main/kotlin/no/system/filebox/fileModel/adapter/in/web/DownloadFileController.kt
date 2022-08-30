@@ -21,6 +21,7 @@ class DownloadFileController(private val downloadFileUseCase: DownloadFileUseCas
         return ResponseEntity
             .status(HttpStatus.OK)
             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + file?.fileName + "\"")
+            .header(HttpHeaders.CONTENT_TYPE, file?.fileType)
             .body(ByteArrayResource(file.filedata))
     }
 }
